@@ -1,0 +1,36 @@
+#!/bin/bash
+# /etc/init.d/servod
+
+##########
+#  To auto-run ServoBlaster on startup, put this file in /etc/init.d and run
+#
+#    sudo chmod 755 /etc/init.d/servod
+#    sudo update-rc.d /etc/init.d/servod defaults
+#
+#  You can also start and stop servod with
+#
+#    sudo /etc/init.d/servod start
+#
+#  and
+#
+#    sudo /etc/init.d/servod stop
+#
+##########
+
+
+case "$1" in
+    start)
+        echo "Starting servod"
+        /home/pi/servoblaster/PiBits/ServoBlaster/user/servod
+        ;;
+    stop)
+        echo "Stopping servod"
+        killall servod
+        ;;
+    *)
+        echo "Usage: /etc/init.d/servod start|stop"
+        exit 1
+        ;;
+esac
+
+exit 0

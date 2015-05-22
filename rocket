@@ -1,0 +1,36 @@
+#!/bin/bash
+# /etc/init.d/rocket
+
+##########
+#  To auto-run the rocket server on startup, put this file in /etc/init.d and run
+#
+#    sudo chmod 755 /etc/init.d/rocket
+#    sudo update-rc.d /etc/init.d/rocket defaults
+#
+#  You can also start and stop rocket with
+#
+#    sudo /etc/init.d/rocket start
+#
+#  and
+#
+#    sudo /etc/init.d/rocket stop
+#
+##########
+
+
+case "$1" in
+    start)
+        echo "Starting rocket"
+        /usr/local/bin/node /home/pi/noderocket/rocket/server.js
+        ;;
+    stop)
+        echo "Stopping rocket"
+        killall node
+        ;;
+    *)
+        echo "Usage: /etc/init.d/rocket start|stop"
+        exit 1
+        ;;
+esac
+
+exit 0
